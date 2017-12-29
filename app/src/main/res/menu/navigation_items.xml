@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/action_past"
+        android:icon="@drawable/ic_history"
+        android:title="@string/past"/>
+
+    <item
+        android:id="@+id/action_home"
+        android:icon="@drawable/ic_home"
+        android:title="@string/home"/>
+
+    <item
+        android:id="@+id/action_future"
+        android:icon="@drawable/ic_schedule"
+        android:title="@string/future"/>
+</menu>
