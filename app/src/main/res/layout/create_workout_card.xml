@@ -9,7 +9,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Setup your next workout"
+        android:text="@string/setup_your_next_workout"
         android:textColor="@color/primaryColor"
         style="@style/TextAppearance.AppCompat.Medium"/>
 

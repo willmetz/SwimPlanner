@@ -1,5 +1,5 @@
 package com.slapshotapps.swimplanner.api.models
 
 
-data class Workout(val name : String, val workoutDate : String, val totalYardage : Int, val sets : List<Set>)
-data class Set(val stroke : String, val yards : Int, val repititions : Int)
+data class Workout(val id : Int, val name : String, val targetDate : String, val completedDate : String, val sets : List<WorkoutSet>)
+data class WorkoutSet(val id : Int, val strokes: List<SwimStroke>, val yards : Int, val repetitions: Int, val notes : String)
