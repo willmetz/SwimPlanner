@@ -9,7 +9,7 @@ import java.util.*
 class UpcomingWorkoutViewModel(val workout: Workout) {
 
     val serviceDateFormat = SimpleDateFormat("MM-dd-yyyy", Locale.US)
-    val targetDisplayDateFormat = SimpleDateFormat("E MMMM d", Locale.US)
+    val targetDisplayDateFormat = SimpleDateFormat("EEEEE MMMM d", Locale.US)
 
     fun targetDate(): String {
         val targetDate = serviceDateFormat.parse(workout.targetDate)
