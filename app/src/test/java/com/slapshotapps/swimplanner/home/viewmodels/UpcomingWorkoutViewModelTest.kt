@@ -91,4 +91,11 @@ class UpcomingWorkoutViewModelTest {
 
         assertEquals("1 x 100 Free", viewModel.setThree())
     }
+
+    @Test
+    fun testTotalWorkoutYards(){
+        val viewModel = UpcomingWorkoutViewModel(workout)
+
+        assertEquals("3100 yards", viewModel.totalWorkoutYards())
+    }
 }
