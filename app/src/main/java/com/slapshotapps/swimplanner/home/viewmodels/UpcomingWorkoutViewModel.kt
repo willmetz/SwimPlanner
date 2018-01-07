@@ -30,25 +30,17 @@ class UpcomingWorkoutViewModel(val workout: Workout) {
         }
     }
 
-    fun setOne(): String {
-        if (workout.sets.size > 0) {
-            return setToString(workout.sets[0])
+    fun setWorkout(setOneBased: Int): String {
+        if (workout.sets.size >= setOneBased) {
+            return setToString(workout.sets[setOneBased - 1])
         } else {
             return ""
         }
     }
 
-    fun setTwo(): String {
-        if (workout.sets.size > 1) {
-            return setToString(workout.sets[1])
-        } else {
-            return ""
-        }
-    }
-
-    fun setThree(): String {
-        if (workout.sets.size > 2) {
-            return setToString(workout.sets[2])
+    fun setStrokes(setOneBased: Int): String {
+        if (!setWorkout(setOneBased).isEmpty()) {
+            return strokesForSet(workout.sets[setOneBased - 1])
         } else {
             return ""
         }
@@ -65,16 +57,21 @@ class UpcomingWorkoutViewModel(val workout: Workout) {
     }
 
     private fun setToString(set: WorkoutSet): String {
-        var setString = set.repetitions.toString() + " x " + set.yards.toString() + " ";
+        return set.repetitions.toString() + " x " + set.yards.toString();
+    }
+
+    private fun strokesForSet(set: WorkoutSet): String {
+
+        var setStrokes = ""
 
         for (i in set.strokes.indices) {
-            setString += set.strokes[i].str
+            setStrokes += set.strokes[i].str
 
             if (i + 1 < set.strokes.size) {
-                setString += ", "
+                setStrokes += ", "
             }
         }
 
-        return setString
+        return setStrokes
     }
 }

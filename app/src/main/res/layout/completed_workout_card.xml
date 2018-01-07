@@ -1,40 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView
+
+<layout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="100dp"
-    android:layout_margin="4dp">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <android.support.constraint.ConstraintLayout
+    <data>
+        <variable
+            name="data"
+            type="com.slapshotapps.swimplanner.home.viewmodels.CompletedWorkoutViewModel"/>
+    </data>
+
+    <android.support.v7.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="100dp"
+        android:layout_margin="4dp">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
 
-        <TextView
-            android:id="@+id/title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:text="@string/last_completed"
-            android:textColor="@color/primaryColor"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            style="@style/TextAppearance.AppCompat.Large"/>
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="@string/last_completed"
+                android:textColor="@color/primaryColor"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                style="@style/TextAppearance.AppCompat.Large"/>
 
 
-        <TextView
-            android:id="@+id/yardage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="4dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            tools:text="Workout yardage: 1600"
-            style="@style/TextAppearance.AppCompat.Medium"/>
+            <TextView
+                android:id="@+id/yardage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:text="@{data.totalWorkoutYards()}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Workout yardage: 1600"
+                style="@style/TextAppearance.AppCompat.Medium"/>
 
-    </android.support.constraint.ConstraintLayout>
-</android.support.v7.widget.CardView>
+        </android.support.constraint.ConstraintLayout>
+    </android.support.v7.widget.CardView>
+
+</layout>

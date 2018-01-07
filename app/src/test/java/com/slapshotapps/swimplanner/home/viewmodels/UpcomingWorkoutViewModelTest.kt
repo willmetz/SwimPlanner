@@ -75,21 +75,32 @@ class UpcomingWorkoutViewModelTest {
     fun testSetOne(){
         val viewModel = UpcomingWorkoutViewModel(workout)
 
-        assertEquals("10 x 50 Back, Fly", viewModel.setOne())
+        assertEquals("10 x 50", viewModel.setWorkout(1))
+        assertEquals("Back, Fly", viewModel.setStrokes(1))
     }
 
     @Test
     fun testSetTwo(){
         val viewModel = UpcomingWorkoutViewModel(workout)
 
-        assertEquals("5 x 500 Back", viewModel.setTwo())
+        assertEquals("5 x 500", viewModel.setWorkout(2))
+        assertEquals("Back", viewModel.setStrokes(2))
     }
 
     @Test
     fun testSetThree(){
         val viewModel = UpcomingWorkoutViewModel(workout)
 
-        assertEquals("1 x 100 Free", viewModel.setThree())
+        assertEquals("1 x 100", viewModel.setWorkout(3))
+        assertEquals("Free", viewModel.setStrokes(3))
+    }
+
+    @Test
+    fun testNonExistingSet(){
+        val viewModel = UpcomingWorkoutViewModel(workout)
+
+        assertEquals("", viewModel.setWorkout(4))
+        assertEquals("", viewModel.setStrokes(4))
     }
 
     @Test
