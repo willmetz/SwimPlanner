@@ -7,11 +7,13 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import com.slapshotapps.swimplanner.R
 import com.slapshotapps.swimplanner.databinding.CompletedWorkoutCardBinding
+import com.slapshotapps.swimplanner.databinding.UpcomingWorkoutCardBinding
 import com.slapshotapps.swimplanner.home.viewmodels.CompletedWorkoutViewModel
+import com.slapshotapps.swimplanner.home.viewmodels.UpcomingWorkoutViewModel
 
 class UpcomingWorkoutView : ConstraintLayout {
 
-  //  lateinit var binding: CompletedWorkoutCardBinding
+    lateinit var binding: UpcomingWorkoutCardBinding
 
     constructor(context: Context) : super(context) {
         init(context)
@@ -22,12 +24,11 @@ class UpcomingWorkoutView : ConstraintLayout {
     }
 
     private fun init(context: Context) {
-//        binding = DataBindingUtil.inflate<CompletedWorkoutCardBinding>(LayoutInflater.from(context),
-//            R.layout.completed_workout_card, this, true)
+        binding = DataBindingUtil.inflate<UpcomingWorkoutCardBinding>(LayoutInflater.from(context),
+            R.layout.upcoming_workout_card, this, true)
     }
 
-    fun setWorkout(viewModel: CompletedWorkoutViewModel) {
-//        binding.data = viewModel
-//        binding.invalidateAll()
+    fun setWorkout(viewModel: UpcomingWorkoutViewModel) {
+        binding.upcomingWorkout = viewModel
     }
 }
