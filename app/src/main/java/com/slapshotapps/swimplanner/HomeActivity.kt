@@ -53,5 +53,13 @@ class HomeActivity : AppCompatActivity() {
         val upcomingWorkoutVM = UpcomingWorkoutViewModel(upcomingWorkout)
 
         upcoming_workout.setWorkout(upcomingWorkoutVM)
+
+
+        val completedWorkoutSets = ArrayList<WorkoutSet>()
+        completedWorkoutSets.add(workoutSet2)
+        completedWorkoutSets.add(workoutSet4)
+        val completedWorkout = Workout(1, "test", "03-20-2018", "03-20-2018", completedWorkoutSets)
+
+        completed_workout.setWorkout(CompletedWorkoutViewModel(completedWorkout))
     }
 }

@@ -4,5 +4,5 @@
     <string name="home">Home</string>
     <string name="future">Future</string>
     <string name="setup_your_next_workout">Setup your next workout</string>
-    <string name="last_completed">Last Completed</string>
+    <string name="last_completed">Completed %s</string>
 </resources>

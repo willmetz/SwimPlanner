@@ -2,6 +2,7 @@ package com.slapshotapps.swimplanner.home.viewmodels
 
 import com.slapshotapps.swimplanner.api.models.Workout
 import com.slapshotapps.swimplanner.api.models.WorkoutSet
+import com.slapshotapps.swimplanner.utils.dayPostfix
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -21,16 +22,6 @@ class UpcomingWorkoutViewModel(val workout: Workout) {
 
         return targetDisplayDateFormat.format(targetDate) + dayPostfix(
             cal.get(Calendar.DAY_OF_MONTH))
-    }
-
-    private fun dayPostfix(day: Int): String {
-
-        when (day) {
-            1, 21, 31 -> return "st"
-            2, 22 -> return "nd"
-            3, 23 -> return "rd"
-            else -> return "th"
-        }
     }
 
     fun setWorkout(setOneBased: Int): String {
