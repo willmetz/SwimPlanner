@@ -1,22 +1,22 @@
-package com.slapshotapps.swimplanner
+package com.slapshotapps.swimplanner.home
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import com.slapshotapps.swimplanner.R
 import com.slapshotapps.swimplanner.api.models.SwimStroke
 import com.slapshotapps.swimplanner.api.models.Workout
 import com.slapshotapps.swimplanner.api.models.WorkoutSet
 import com.slapshotapps.swimplanner.home.viewmodels.CompletedWorkoutViewModel
 import com.slapshotapps.swimplanner.home.viewmodels.UpcomingWorkoutViewModel
+import com.slapshotapps.swimplanner.upcoming_workout.UpcomingWorkoutDetailActivity
 import kotlinx.android.synthetic.main.activity_home.*
 
-class HomeActivity : AppCompatActivity() {
+class HomeActivity : AppCompatActivity(), UpcomingWorkoutViewModel.UpcomingWorkoutListener{
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
-
-
-
     }
 
     override fun onResume() {
@@ -25,6 +25,10 @@ class HomeActivity : AppCompatActivity() {
         navigation_bar.selectedItemId = R.id.action_home;
 
         createTestData()
+    }
+
+    override fun onViewUpcomingWorkoutDetails() {
+        startActivity(UpcomingWorkoutDetailActivity.getIntent(this))
     }
 
     private fun createTestData(){
@@ -50,7 +54,7 @@ class HomeActivity : AppCompatActivity() {
 
         val upcomingWorkout = Workout(1, "test", "03-20-2018", "", upcomingWorkoutSets)
 
-        val upcomingWorkoutVM = UpcomingWorkoutViewModel(upcomingWorkout)
+        val upcomingWorkoutVM = UpcomingWorkoutViewModel(upcomingWorkout, this)
 
         upcoming_workout.setWorkout(upcomingWorkoutVM)
 

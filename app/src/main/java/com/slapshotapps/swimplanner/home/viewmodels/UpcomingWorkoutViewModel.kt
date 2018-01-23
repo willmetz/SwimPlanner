@@ -7,10 +7,14 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 
-class UpcomingWorkoutViewModel(val workout: Workout) {
+class UpcomingWorkoutViewModel(val workout: Workout, val listener: UpcomingWorkoutListener) {
 
     val serviceDateFormat = SimpleDateFormat("MM-dd-yyyy", Locale.US)
     val targetDisplayDateFormat = SimpleDateFormat("EEEE MMMM d", Locale.US)
+
+    interface UpcomingWorkoutListener{
+        fun onViewUpcomingWorkoutDetails()
+    }
 
     fun targetDate(): String {
         if (workout.targetDate.isEmpty()) {
@@ -48,6 +52,10 @@ class UpcomingWorkoutViewModel(val workout: Workout) {
         }
 
         return totalYards.toString() + " yards"
+    }
+
+    fun onWorkoutTapped(){
+        listener.onViewUpcomingWorkoutDetails()
     }
 
     private fun setToString(set: WorkoutSet): String {
