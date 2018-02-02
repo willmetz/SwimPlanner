@@ -6,10 +6,10 @@ import com.slapshotapps.swimplanner.api.models.WorkoutSet
 import junit.framework.Assert.assertEquals
 import org.junit.Test
 
-class WorkoutRowViewModelTest{
+class WorkoutRowViewModelTest {
 
     @Test
-    fun testWorkoutSetYardsAndReps(){
+    fun testWorkoutSetYardsAndReps() {
 
         val strokesList = ArrayList<SwimStroke>()
         strokesList.add(SwimStroke.FREE)
@@ -23,7 +23,7 @@ class WorkoutRowViewModelTest{
     }
 
     @Test
-    fun testWorkoutSetStrokes(){
+    fun testWorkoutSetStrokes() {
         val strokesList = ArrayList<SwimStroke>()
         strokesList.add(SwimStroke.FREE)
         strokesList.add(SwimStroke.FLY)
@@ -37,7 +37,7 @@ class WorkoutRowViewModelTest{
     }
 
     @Test
-    fun testWorkoutSetOneStroke(){
+    fun testWorkoutSetOneStroke() {
         val strokesList = ArrayList<SwimStroke>()
         strokesList.add(SwimStroke.IM)
 
@@ -49,7 +49,7 @@ class WorkoutRowViewModelTest{
     }
 
     @Test
-    fun testWorkoutSetYardage(){
+    fun testWorkoutSetYardage() {
         val strokesList = ArrayList<SwimStroke>()
         strokesList.add(SwimStroke.IM)
 
@@ -58,5 +58,17 @@ class WorkoutRowViewModelTest{
         val viewModel = WorkoutRowViewModel(workoutSet)
 
         assertEquals("800 yards", viewModel.workoutYardage())
+    }
+
+    @Test
+    fun testWorkoutSetNotes() {
+        val strokesList = ArrayList<SwimStroke>()
+        strokesList.add(SwimStroke.IM)
+
+        val workoutSet = WorkoutSet(0, strokesList, 100, 8, "This is a note")
+
+        val viewModel = WorkoutRowViewModel(workoutSet)
+
+        assertEquals("This is a note", viewModel.workoutNotes())
     }
 }

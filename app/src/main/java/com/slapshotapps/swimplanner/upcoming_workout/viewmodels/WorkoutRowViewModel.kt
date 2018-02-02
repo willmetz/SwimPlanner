@@ -28,4 +28,8 @@ class WorkoutRowViewModel(val workoutSet: WorkoutSet) {
         return String.format(Locale.US, "%d yards", workoutSet.repetitions * workoutSet.yards);
     }
 
+    fun workoutNotes(): String {
+        return workoutSet.notes
+    }
+
 }
