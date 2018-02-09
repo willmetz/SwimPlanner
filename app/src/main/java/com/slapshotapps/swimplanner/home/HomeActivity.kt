@@ -2,6 +2,7 @@ package com.slapshotapps.swimplanner.home
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import com.slapshotapps.swimplanner.R
 import com.slapshotapps.swimplanner.api.models.SwimStroke
 import com.slapshotapps.swimplanner.api.models.Workout
@@ -9,6 +10,7 @@ import com.slapshotapps.swimplanner.api.models.WorkoutSet
 import com.slapshotapps.swimplanner.home.viewmodels.CompletedWorkoutViewModel
 import com.slapshotapps.swimplanner.home.viewmodels.UpcomingWorkoutViewModel
 import com.slapshotapps.swimplanner.upcoming_workout.UpcomingWorkoutDetailActivity
+import com.slapshotapps.swimplanner.utils.logDebug
 import kotlinx.android.synthetic.main.activity_home.*
 
 class HomeActivity : AppCompatActivity(), UpcomingWorkoutViewModel.UpcomingWorkoutListener{
@@ -32,6 +34,9 @@ class HomeActivity : AppCompatActivity(), UpcomingWorkoutViewModel.UpcomingWorko
     }
 
     private fun createTestData(){
+
+        logDebug("Creating Test Data")
+
         val freeStyleList = ArrayList<SwimStroke>();
         freeStyleList.add(SwimStroke.FREE)
         val workoutSet1 = WorkoutSet(1, freeStyleList,150, 6, "2 minute interval");
@@ -65,5 +70,6 @@ class HomeActivity : AppCompatActivity(), UpcomingWorkoutViewModel.UpcomingWorko
         val completedWorkout = Workout(1, "test", "03-20-2018", "03-20-2018", completedWorkoutSets)
 
         completed_workout.setWorkout(CompletedWorkoutViewModel(completedWorkout))
+
     }
 }
