@@ -9,18 +9,14 @@ import java.util.*
 
 class UpcomingWorkoutViewModel(val workout: Workout, val listener: UpcomingWorkoutListener) {
 
-    val serviceDateFormat = SimpleDateFormat("MM-dd-yyyy", Locale.US)
     val targetDisplayDateFormat = SimpleDateFormat("EEEE MMMM d", Locale.US)
 
     interface UpcomingWorkoutListener{
-        fun onViewUpcomingWorkoutDetails()
+        fun onViewUpcomingWorkoutDetails(workout: Workout)
     }
 
     fun targetDate(): String {
-        if (workout.targetDate.isEmpty()) {
-            return "";
-        }
-        val targetDate = serviceDateFormat.parse(workout.targetDate)
+        val targetDate = workout.targetDate()
         val cal = Calendar.getInstance()
         cal.time = targetDate
 
@@ -55,7 +51,7 @@ class UpcomingWorkoutViewModel(val workout: Workout, val listener: UpcomingWorko
     }
 
     fun onWorkoutTapped(){
-        listener.onViewUpcomingWorkoutDetails()
+        listener.onViewUpcomingWorkoutDetails(workout)
     }
 
     private fun setToString(set: WorkoutSet): String {

@@ -3,16 +3,15 @@ package com.slapshotapps.swimplanner.home.viewmodels
 import com.slapshotapps.swimplanner.api.models.SwimStroke
 import com.slapshotapps.swimplanner.api.models.Workout
 import com.slapshotapps.swimplanner.api.models.WorkoutSet
+import org.junit.Assert.assertEquals
 import org.junit.Before
-
-import org.junit.Assert.*
 import org.junit.Test
 import java.text.SimpleDateFormat
 import java.util.*
 
 class UpcomingWorkoutViewModelTest {
 
-    lateinit var workout : Workout
+    lateinit var workout: Workout
     val workoutSets = ArrayList<WorkoutSet>()
 
     @Before
@@ -39,35 +38,31 @@ class UpcomingWorkoutViewModelTest {
     }
 
     @Test
-    fun testTargetDate(){
+    fun testTargetDate() {
 
         val serviceDateFormat = SimpleDateFormat("MM-dd-yyyy", Locale.US)
-        var viewModel = UpcomingWorkoutViewModel(workout, object : UpcomingWorkoutViewModel.UpcomingWorkoutListener{
-            override fun onViewUpcomingWorkoutDetails() {
-            }
-        })
+        var viewModel: UpcomingWorkoutViewModel
 
         val targetDate = Calendar.getInstance()
         targetDate.set(2018, Calendar.JANUARY, 1)
 
         var i = 1
-        while(i < 32){
+        while (i < 32) {
             targetDate.set(2018, Calendar.JANUARY, i)
 
-            viewModel = UpcomingWorkoutViewModel(Workout(1,"bob",
+            viewModel = UpcomingWorkoutViewModel(Workout(1, "bob",
                 serviceDateFormat.format(targetDate.time),
-                "11-12-2018", workoutSets), object : UpcomingWorkoutViewModel.UpcomingWorkoutListener{
-                override fun onViewUpcomingWorkoutDetails() {
-                }
-            })
+                "11-12-2018", workoutSets),
+                UpcomingWorkoutListenerHelper())
 
-            val dayName = targetDate.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.LONG_FORMAT, Locale.US)
+            val dayName = targetDate.getDisplayName(Calendar.DAY_OF_WEEK, Calendar.LONG_FORMAT,
+                Locale.US)
 
             var suffix = "th"
-            when(i){
-                1,21,31 -> suffix = "st"
-                2,22 -> suffix = "nd"
-                3,23 -> suffix = "rd"
+            when (i) {
+                1, 21, 31 -> suffix = "st"
+                2, 22 -> suffix = "nd"
+                3, 23 -> suffix = "rd"
                 else -> suffix = "th"
             }
 
@@ -78,56 +73,47 @@ class UpcomingWorkoutViewModelTest {
     }
 
     @Test
-    fun testSetOne(){
-        var viewModel = UpcomingWorkoutViewModel(workout, object : UpcomingWorkoutViewModel.UpcomingWorkoutListener{
-            override fun onViewUpcomingWorkoutDetails() {
-            }
-        })
+    fun testSetOne() {
+        val viewModel = UpcomingWorkoutViewModel(workout, UpcomingWorkoutListenerHelper())
 
         assertEquals("10 x 50", viewModel.setWorkout(1))
         assertEquals("Back, Fly", viewModel.setStrokes(1))
     }
 
     @Test
-    fun testSetTwo(){
-        var viewModel = UpcomingWorkoutViewModel(workout, object : UpcomingWorkoutViewModel.UpcomingWorkoutListener{
-            override fun onViewUpcomingWorkoutDetails() {
-            }
-        })
+    fun testSetTwo() {
+        val viewModel = UpcomingWorkoutViewModel(workout, UpcomingWorkoutListenerHelper())
 
         assertEquals("5 x 500", viewModel.setWorkout(2))
         assertEquals("Back", viewModel.setStrokes(2))
     }
 
     @Test
-    fun testSetThree(){
-        var viewModel = UpcomingWorkoutViewModel(workout, object : UpcomingWorkoutViewModel.UpcomingWorkoutListener{
-            override fun onViewUpcomingWorkoutDetails() {
-            }
-        })
+    fun testSetThree() {
+        val viewModel = UpcomingWorkoutViewModel(workout, UpcomingWorkoutListenerHelper())
 
         assertEquals("1 x 100", viewModel.setWorkout(3))
         assertEquals("Free", viewModel.setStrokes(3))
     }
 
     @Test
-    fun testNonExistingSet(){
-        var viewModel = UpcomingWorkoutViewModel(workout, object : UpcomingWorkoutViewModel.UpcomingWorkoutListener{
-            override fun onViewUpcomingWorkoutDetails() {
-            }
-        })
+    fun testNonExistingSet() {
+        val viewModel = UpcomingWorkoutViewModel(workout, UpcomingWorkoutListenerHelper())
 
         assertEquals("", viewModel.setWorkout(4))
         assertEquals("", viewModel.setStrokes(4))
     }
 
     @Test
-    fun testTotalWorkoutYards(){
-        var viewModel = UpcomingWorkoutViewModel(workout, object : UpcomingWorkoutViewModel.UpcomingWorkoutListener{
-            override fun onViewUpcomingWorkoutDetails() {
-            }
-        })
+    fun testTotalWorkoutYards() {
+        val viewModel = UpcomingWorkoutViewModel(workout, UpcomingWorkoutListenerHelper())
 
         assertEquals("3100 yards", viewModel.totalWorkoutYards())
+    }
+
+    class UpcomingWorkoutListenerHelper : UpcomingWorkoutViewModel.UpcomingWorkoutListener {
+        override fun onViewUpcomingWorkoutDetails(workout: Workout) {
+            //no-op
+        }
     }
 }

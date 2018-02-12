@@ -15,6 +15,7 @@ import kotlinx.android.synthetic.main.activity_home.*
 
 class HomeActivity : AppCompatActivity(), UpcomingWorkoutViewModel.UpcomingWorkoutListener{
 
+    lateinit var completedWorkout : Workout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,8 +30,8 @@ class HomeActivity : AppCompatActivity(), UpcomingWorkoutViewModel.UpcomingWorko
         createTestData()
     }
 
-    override fun onViewUpcomingWorkoutDetails() {
-        startActivity(UpcomingWorkoutDetailActivity.getIntent(this))
+    override fun onViewUpcomingWorkoutDetails(workout: Workout) {
+        startActivity(UpcomingWorkoutDetailActivity.getIntent(this, workout))
     }
 
     private fun createTestData(){
@@ -67,7 +68,7 @@ class HomeActivity : AppCompatActivity(), UpcomingWorkoutViewModel.UpcomingWorko
         val completedWorkoutSets = ArrayList<WorkoutSet>()
         completedWorkoutSets.add(workoutSet2)
         completedWorkoutSets.add(workoutSet4)
-        val completedWorkout = Workout(1, "test", "03-20-2018", "03-20-2018", completedWorkoutSets)
+        completedWorkout = Workout(1, "test", "03-20-2018", "03-20-2018", completedWorkoutSets)
 
         completed_workout.setWorkout(CompletedWorkoutViewModel(completedWorkout))
 

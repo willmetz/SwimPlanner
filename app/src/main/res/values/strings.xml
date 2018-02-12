@@ -6,4 +6,5 @@
     <string name="setup_your_next_workout">Setup your next workout</string>
     <string name="last_completed">Completed %s</string>
     <string name="notes">Notes</string>
+    <string name="total_yards">Total Yards:</string>
 </resources>

@@ -1,5 +1,11 @@
 package com.slapshotapps.swimplanner.utils
 
+import java.text.SimpleDateFormat
+import java.util.*
+
+
+val weekdayShortMonthDayFormat = SimpleDateFormat("EEE MM d", Locale.US)
+
 fun dayPostfix(day: Int): String {
 
     when (day) {

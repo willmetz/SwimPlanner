@@ -8,9 +8,7 @@ import java.util.*
 
 class CompletedWorkoutViewModel(val workout: Workout) {
 
-    val serviceDateFormat = SimpleDateFormat("MM-dd-yyyy", Locale.US)
     val completedDisplayDateFormat = SimpleDateFormat("MMM d", Locale.US)
-
 
     fun totalWorkoutYards(): String {
         var totalYards = 0
@@ -23,10 +21,8 @@ class CompletedWorkoutViewModel(val workout: Workout) {
     }
 
     fun completedDate(): String {
-        if (workout.targetDate.isEmpty()) {
-            return "";
-        }
-        val targetDate = serviceDateFormat.parse(workout.targetDate)
+
+        val targetDate = workout.completedDate()
         val cal = Calendar.getInstance()
         cal.time = targetDate
 
